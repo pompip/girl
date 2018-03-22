@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>error</title>
+</head>
+<body>
+<div>发生了一些错误</div>
+<div th:text="${errorCode}"> 错误码</div>
+<div th:text="${errorURL}"> 错误地址</div>
+<div th:text="${errorStack}"> 错误原因</div>
+
+</body>
+</html>

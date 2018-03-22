@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="UTF-8">
+    <title>websocket</title>
+    <script src="/js/jquery-1.11.2.min.js"></script>
+    <script>
+        /**
+         *
+         *  public int  cmd = 1;
+         public String fromUserID;
+         public String toUserID;
+         public Long time;
+         public String msgData;
+         */
+
+        var chatMessage = [];
+        var groupMessage = [];
+        var online = [];
+        var meID;
+
+        function receiveMsg(msg) {
+            var json = JSON.parse(msg);
+
+            if (json.cmd === 1) {
+                chatMessage.push(json);
+                refreshChatArea()
+            } else if (json.cmd === 2) {
+                online = json.onlineUser;
+                meID = json.meID;
+                refreshOnline(online)
+            } else if (json.cmd === 4) {
+                groupMessage.add(msg)
+            }
+        }
+
+
+        function refreshChatArea() {
+            var inChat = "";
+            for (var i of chatMessage) {
+                if (toUserID===i.fromUserID||toUserID===i.toUserID){
+                    inChat += ("<p>" + i.fromUserID + " : " + i.msgData + "</p>")
+                }
+            }
+            $("#msgArea").html("");
+            $("#msgArea").append(inChat);
+            $('#msgArea').scrollTop($('#msgArea')[0].scrollHeight);
+        }
+        function refreshOnline(online) {
+            $("header").html("我：" + meID)
+            $("#userArea").html("<p class='onLineUser' style='background: lightgray'>all</p>")
+            for (var i of online) {
+                if (meID === i) {
+                    continue
+                }
+                var user = "<p class='onLineUser' >" + i + "</p>"
+                $("#userArea").append(user)
+            }
+
+            $("p.onLineUser").click(function () {
+                toUserID = $(this).html()
+                $("p.onLineUser").css("background", "gray")
+                $(this).css("background", "lightgray")
+                refreshChatArea()
+            })
+
+        }
+
+        var ws = new WebSocket("ws://" + window.location.host + "/websocket");
+        ws.onmessage = function (ev) {
+            var data = ev.data;
+            receiveMsg(data)
+        };
+        ws.onopen = function (ev) {
+
+        };
+        ws.onerror = function (ev) {
+            alert(ev.data)
+        }
+        ws.onclose = function (ev) {
+            alert("请刷新");
+        }
+        var toUserID = "all";
+
+        function send() {
+            var msg = $("#sendData").html();
+            var data = {"cmd": 1, "toUserID": toUserID, "fromUserID": meID, "msgData": msg}
+            var jsonString = JSON.stringify(data);
+            chatMessage.push(data)
+            ws.send(jsonString)
+            refreshChatArea()
+        }
+    </script>
+    <style>
+        body {
+            width: 20rem;
+            height: 35rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #userArea {
+            float: left;
+            background: #4fc08d;
+            overflow: auto;
+        }
+
+        #msgArea {
+            float: left;
+            background: lightgray;
+            overflow: auto;
+        }
+
+        p.onLineUser {
+            float: bottom;
+            padding: 10px;
+            margin: 0;
+            background: gray;
+        }
+
+        p {
+            float: bottom;
+            padding: 10px;
+            margin: 0;
+            background: lightgray;
+        }
+
+    </style>
+</head>
+<body>
+<header></header>
+<div id="userArea" style="width: 8rem;height: 35rem ;float: left;background: #4fc08d;"></div>
+<div style="width: 12rem ;height: 35rem;float: left;">
+
+    <div id="msgArea" title="聊天" style="width: 12rem ;height: 30rem ;float: left">
+        <p class="fromMe">可以聊天咯</p>
+    </div>
+
+    <div title="send" style=" background: gold;width: 12rem ;height: 5rem ;float: left">
+        <div id="sendData" contenteditable="true" style="float: left;width: 8rem;height: 5rem;overflow: auto"></div>
+        <button id="sendButton" onclick="send()"
+                style="float: right ;text-align: center;width: 4rem;height: 5rem">发送
+        </button>
+    </div>
+</div>
+<footer style="text-align: center">Author:liu_Kechong .Just for fun</footer>
+</body>
+</html>

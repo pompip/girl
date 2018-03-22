@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/js/jquery-1.11.2.min.js"></script>
+    <script>
+        function login() {
+            var name = $("#name").val()
+            var password = $("#pas").val()
+            $.post(
+                "/account/login",
+                {"name": name, "password": password},
+                function (result) {
+                    if ("success" == result) {
+                        window.location.href = "/"
+                    } else {
+                        alert(result)
+                    }
+                }
+            )
+        }
+
+        function logout() {
+            $.post("/account/logout", function (result) {
+                if (result == "success") {
+                    alert("logout")
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<form id="loginform">
+    <table align="center">
+        <tr>
+            <td>
+                账户：
+            </td>
+            <td>
+                <input type="text" name="name" id="name"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                密码：
+            </td>
+            <td>
+                <input type="password" name="password" id="pas"/>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="登陆" onclick="login()"/></td>
+            <td><input type="button" value="注册"/></td>
+            <td><input type="button" value="注销" onclick="logout()"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
