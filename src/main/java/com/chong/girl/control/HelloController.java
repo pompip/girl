@@ -3,9 +3,6 @@ package com.chong.girl.control;
 import com.chong.girl.bean.Girl;
 import com.chong.girl.bean.MyInfo;
 import com.chong.girl.dao.GirlRepository;
-import com.google.gson.Gson;
-import com.google.gson.TypeAdapter;
-import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
@@ -35,13 +32,6 @@ public class HelloController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
-        LinkedList<Object> list = new LinkedList<>();
-        Gson gson = new Gson();
-        gson.fromJson("", new TypeToken<MyInfo>() {
-        }.getType());
-        TypeToken<List<Girl>> type = new TypeToken<List<Girl>>() {
-        };
-        TypeAdapter<List<Girl>> adapter = new Gson().getAdapter(type);
         return "index";
 
     }

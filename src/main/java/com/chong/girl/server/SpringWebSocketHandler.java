@@ -1,8 +1,7 @@
 package com.chong.girl.server;
 
 import com.chong.girl.bean.*;
-import com.google.gson.Gson;
-import com.google.gson.TypeAdapter;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.*;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
@@ -14,9 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class SpringWebSocketHandler extends AbstractWebSocketHandler {
     private static ConcurrentHashMap<String, WebSocketSession> sessionMap = new ConcurrentHashMap<>();
-
-    private  TypeAdapter<MsgUser> userAdapter = new Gson().getAdapter(MsgUser.class);
-    private  TypeAdapter<MsgSystem> systemAdapter = new Gson().getAdapter(MsgSystem.class);
+    private ObjectMapper mapper = new ObjectMapper();
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -25,7 +22,8 @@ public class SpringWebSocketHandler extends AbstractWebSocketHandler {
         MsgUser msgEntity;
         String toUserID;
         try { //兼容测试
-            msgEntity = userAdapter.fromJson(msg);
+//            msgEntity = userAdapter.fromJson(msg);
+            msgEntity = mapper.readValue(msg,MsgUser.class);
             toUserID = msgEntity.toUserID;
         } catch (Exception e) {
 
@@ -33,7 +31,7 @@ public class SpringWebSocketHandler extends AbstractWebSocketHandler {
             msgUser.fromUserID = session.getId();
             msgUser.toUserID = "all";
             msgUser.msgData = "testMessage" + msg;
-            TextMessage textMessage = stringToMsg(userAdapter.toJson(msgUser));
+            TextMessage textMessage = stringToMsg(mapper.writeValueAsString(msgUser));
             for (WebSocketSession s : sessionMap.values()) {
                 if (s == session) {
                     continue;
@@ -49,7 +47,7 @@ public class SpringWebSocketHandler extends AbstractWebSocketHandler {
             msgUser.fromUserID = session.getId();
             msgUser.toUserID = "all";
             msgUser.msgData = msgEntity.msgData;
-            TextMessage textMessage = stringToMsg(userAdapter.toJson(msgUser));
+            TextMessage textMessage = stringToMsg(mapper.writeValueAsString(msgUser));
             for (WebSocketSession s : sessionMap.values()) {
                 if (s == session) {
                     continue;
@@ -59,13 +57,13 @@ public class SpringWebSocketHandler extends AbstractWebSocketHandler {
         } else {//私聊
             WebSocketSession toUserSession = sessionMap.get(toUserID);
             if (toUserSession == null) {
-                session.sendMessage(new TextMessage(systemAdapter.toJson(MsgSystem.createMessage(3))));
+                session.sendMessage(new TextMessage(mapper.writeValueAsString(MsgSystem.createMessage(3))));
             } else {
                 MsgUser msgUser = new MsgUser();
                 msgUser.fromUserID = session.getId();
                 msgUser.toUserID = toUserID;
                 msgUser.msgData = msgEntity.msgData;
-                toUserSession.sendMessage(new TextMessage(userAdapter.toJson(msgUser)));
+                toUserSession.sendMessage(new TextMessage(mapper.writeValueAsString(msgUser)));
             }
         }
 
@@ -87,7 +85,7 @@ public class SpringWebSocketHandler extends AbstractWebSocketHandler {
         for (WebSocketSession s : sessionMap.values()) {
             msgSystem.onlineUser = new ArrayList<>(sessionMap.keySet());
             msgSystem.meID= s.getId();
-            TextMessage msg = stringToMsg(systemAdapter.toJson(msgSystem));
+            TextMessage msg = stringToMsg(mapper.writeValueAsString(msgSystem));
             s.sendMessage(msg);
         }
         System.out.println("sendOnlineUserMsg  " +msgSystem.onlineUser.toString());

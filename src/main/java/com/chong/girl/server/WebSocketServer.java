@@ -1,8 +1,6 @@
 package com.chong.girl.server;
 
 import com.chong.girl.aspect.HttpAspect;
-import com.google.gson.Gson;
-import com.google.gson.TypeAdapter;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
