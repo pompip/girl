@@ -34,12 +34,12 @@ public class GirlController {
     }
 
     @GetMapping(value = "/deleteGirl/{id}")
-    public void deleteGirl(@PathVariable Integer id) {
+    public void deleteGirl(@PathVariable Long id) {
         repository.delete(id);
     }
 
     @GetMapping(value = "/updateGirl/{id}/{age}/{name}}")
-    public Girl updateGirl(@PathVariable(value = "id", required = true) int id,
+    public Girl updateGirl(@PathVariable(value = "id", required = true) Long id,
                            @PathVariable(value = "age", required = false) int age,
                            @PathVariable(value = "name", required = false) String name
     ) {
@@ -51,7 +51,7 @@ public class GirlController {
     }
 
     @GetMapping(value = "/findGirlById/{id}")
-    public Girl findGirlById(@PathVariable int id) {
+    public Girl findGirlById(@PathVariable Long id) {
         return repository.findOne(id);
     }
     @GetMapping(value = "/findGirlByAge/{age}")

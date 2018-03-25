@@ -8,7 +8,7 @@ server:
       enabled: false
 spring:
   profiles:
-    active: prod
+    active: dev
   thymeleaf:
     encoding: utf-8
     mode: html5
@@ -23,3 +23,5 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  resources:
+    static-locations: classpath:/static

@@ -2,8 +2,11 @@ package com.chong.girl.server;
 
 import com.chong.girl.bean.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.*;
+import org.springframework.web.socket.adapter.AbstractWebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
 import java.util.ArrayList;
@@ -12,8 +15,25 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class SpringWebSocketHandler extends AbstractWebSocketHandler {
-    private static ConcurrentHashMap<String, WebSocketSession> sessionMap = new ConcurrentHashMap<>();
-    private ObjectMapper mapper = new ObjectMapper();
+
+
+    private  ConcurrentHashMap<String, WebSocketSession> sessionMap ;
+
+    @Bean
+    public  ConcurrentHashMap<String, WebSocketSession> getSessionMap() {
+        return new  ConcurrentHashMap<String, WebSocketSession> ();
+    }
+
+    @Autowired
+    public void setSessionMap(ConcurrentHashMap<String,WebSocketSession> sessionMap) {
+        this.sessionMap = sessionMap;
+    }
+
+    private ObjectMapper mapper ;
+    @Autowired
+    public void setMapper(ObjectMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -88,7 +108,6 @@ public class SpringWebSocketHandler extends AbstractWebSocketHandler {
             TextMessage msg = stringToMsg(mapper.writeValueAsString(msgSystem));
             s.sendMessage(msg);
         }
-        System.out.println("sendOnlineUserMsg  " +msgSystem.onlineUser.toString());
     }
 
     private TextMessage stringToMsg(String msg) {

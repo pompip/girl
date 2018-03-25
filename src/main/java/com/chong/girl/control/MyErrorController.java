@@ -18,7 +18,7 @@ import sun.security.provider.certpath.OCSPResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-@Controller
+//@Controller
 public class MyErrorController
         implements ErrorController {
     @Override

@@ -11,7 +11,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-//@ControllerAdvice
+@ControllerAdvice
 public class GlobalExceptionHandler {
 
     private static Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
@@ -33,16 +33,6 @@ public class GlobalExceptionHandler {
         return mav;
     }
 
-
-    @ResponseStatus(code = HttpStatus.NOT_FOUND)
-    public ModelAndView error404(HttpServletRequest request){
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("errorCode", 404);
-        mav.addObject("errorURL", request.getRequestURL());
-        mav.addObject("errorStack", "请求地址错误");
-        mav.setViewName("error");
-        return mav;
-    }
 
 
 }

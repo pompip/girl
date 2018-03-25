@@ -14,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
@@ -23,15 +24,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Configuration
 @EnableWebSocket
 public class WebSecurityConfig extends WebMvcConfigurerAdapter implements WebSocketConfigurer {
 
-    //    @Bean
-//    public SecurityInterceptor getSecurityInterceptor() {
-//        return new SecurityInterceptor();
-//    }
+
     @Autowired
     SecurityInterceptor securityInterceptor;
     @Autowired
@@ -43,10 +42,14 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter implements WebSoc
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
-//        InterceptorRegistration interceptor = registry.addInterceptor(getSecurityInterceptor());
         InterceptorRegistration interceptor = registry.addInterceptor(securityInterceptor);
-//        interceptor.excludePathPatterns("/account/**");
         interceptor.excludePathPatterns("/");
+        interceptor.excludePathPatterns("/error");
+        interceptor.excludePathPatterns("/css/**");
+        interceptor.excludePathPatterns("/js/**");
+        interceptor.excludePathPatterns("/img/**");
+        interceptor.excludePathPatterns("/fonts/**");
+        interceptor.excludePathPatterns("/websocket");
     }
 
 
@@ -95,7 +98,7 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter implements WebSoc
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
             HttpSession session = request.getSession();
-            System.out.println("preHandle     " + session);
+            System.out.println("preHandle     " + session + request.getRequestURI());
             if (session.getAttribute("user") != null) {
 
                 return true;

@@ -4,33 +4,232 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>testcss</title>
-    <link rel="stylesheet" href="css/apollo.css"/>
-    <!--<link rel="stylesheet" href="http://drakeet.me/css/apollo.css"/>-->
+    <!--<link rel="stylesheet" href="css/apollo.css"/>-->
+    <link rel="stylesheet" href="http://drakeet.me/css/apollo.css"/>
+    <link rel="script" href="https://cdn.bootcss.com/markdown.js/0.5.0/markdown.min.js"/>
 </head>
-<body><div class="wrap"><header><a href="/" class="logo-link"><img src="/avatar.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">HOME</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/resume/" target="_self" class="nav-list-link">RESUME</a></li><li class="nav-list-item"><a href="https://github.com/drakeet" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/links/" target="_self" class="nav-list-link">LINKS</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><ul class="home post-list"><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/thinking-in-android/" class="post-title-link">浅谈 Android 编程思想和架构</a></h2><div class="post-info">Mar 11, 2016</div><div class="post-content"><p>我主要是想讲一讲自己对于 接口、模块化、MVP 的一些心得。</p>
-    <p>有这么一个场景，两个不同的页面，包含了看起来一模一样的界面内容（或者称 frame/UI），这种场景可能很常见，有时看到会说：“哈哈，我可以设计个复用！” 但是遇到一个问题是，<strong>这两个页面需要分别去请求不同的服务端 API，返回下来的数据结构也不一样</strong>（姑且不说去和服务端开发协商），这样就会导致具体的 view holder 或者适配器在绑定数据的时候无法复用，为何说无法复用或难以复用呢？举个例子，比如传进 Apdapter 的 list item 数据内容不一样，你总不能把 item 再拆了，分好几个 list 传进去吧？面向具体编程情况下，适配器得到不同的 items，得对 item 分发数据绑定到 UI，难免要写很多重复的代码。</p></div><a href="/thinking-in-android/" class="read-more">more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/retrofit-2-0-okhttp-3-0-config/" class="post-title-link">Retrofit 2.0 + OkHttp 3.0 配置</a></h2><div class="post-info">Mar 2, 2016</div><div class="post-content"><p>Retrofit 和 OkHttp 都是伟大的 Square 公司开源的伟大项目。前段时间也是从 Retrofit 1.9 升级到 2.0 beta 4 版本，从 OkHttp 2.+ 版本升级到  3.0.1 版本。这两者在各自的这两个大版本升级中，都改变了不少，使得原本的代码都需要进行一些修改才能使用，我也是稍微摸索了几下，如今大致摸清，把一些基础配置，比如设置 Json 转换器、RxJava 适配器、设置 Debug Log 模式、设置超时、错误重连，以及配置 Access token Interceptor 等等一些内容，分享一下。<br></div><a href="/retrofit-2-0-okhttp-3-0-config/" class="read-more">more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/create-telegram-bot-with-python/" class="post-title-link">使用 Python 创建 Telegram 机器人</a></h2><div class="post-info">Feb 21, 2016</div><div class="post-content"><p>要说聊天体验，telegram 比微信好很多，微信消息一多就卡，而且没法直接引用消息进行回复导致经常找不到上下文。telegram 则始终异常流畅，记录阅读位置，消息多的时候也不会觉得跟不上聊天节奏或卡 … 当然了，这一段都不是今天要写的这篇文章的重点，这篇文章主要还是要介绍一下如何开发 telegram 机器人，telegram 在去年中旬的时候开放了机器人的 API，可以设置 hook，使得所有消息都能被转发到你的服务上，然后作出自动化回复。</p></div><a href="/create-telegram-bot-with-python/" class="read-more">more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/years-do-not-look-back/" class="post-title-link">岁月不回头</a></h2><div class="post-info">Feb 6, 2016</div><div class="post-content"><p>今天参加了高中同学的大四期聚会，很是高兴。大学上了两年就出来工作，对我而言已经没有毕业没有大学了。而如今大家都快毕业了，听说又有聚会，才确定了回家时间，3号定的动车票，4号回来。之前几年，还是经常装各种理由不去的。虽然自己一点都没有变，大家也都没有变，只是很多都暂时生疏了；虽然我还是默默一个人，有一些遗憾，但总的来说还是非常高兴能够看到大家的。</p></div><a href="/years-do-not-look-back/" class="read-more">more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/leancloud-engine-guide/" class="post-title-link">使用 Python 开发 LeanCloud 云引擎入门教程</a></h2><div class="post-info">Jan 26, 2016</div><div class="post-content"><p>作为独立应用开发者，可能很多时候没有能力或者精力再去开发一个为 App 或者网站服务的后端程序，对于这个问题，我的一个解决方案就是使用 LeanCloud 的云引擎功能，通过云引擎，可以在短时间内快速开发出一个稳定、可靠、可升级拓展的服务。正好最近学习了 Python，于是使用 Python 并基于 LeanCloud 的云引擎功能进行了一次实践，而且由于官方文档并没有写得很好，我碰了几次壁，而且内容分散在好几个页面，所以觉得有必要在此再详细记录下并分享给大家。</p></div><a href="/leancloud-engine-guide/" class="read-more">more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/pure-mosaic/" class="post-title-link">PureMosaic</a></h2><div class="post-info">Oct 15, 2015</div><div class="post-content"><p><img src="/assets/img/pure-mosaic.jpg" alt=""></p>
-    <p><ul><br>    <li>新增 <strong>高亮模式</strong>；</li><br>    <li>新增 <strong>支持双指缩放、移动图片</strong>；</li><br>    <li>大幅 优化对于大图片的处理速度；</li><br>    <li>加入 上滑工具栏获得更多调整的指引；</li><br></ul><br>安装包只有 1.45MB， 下载： <a href="http://fir.im/puremosaic" target="_blank">http://fir.im/puremosaic</a></p>
-    <p>Google Play： <a href="https://play.google.com/store/apps/details?id=me.drakeet.puremosaic" target="_blank"><img class="alignnone size-full wp-image-1175" src="/assets/img/google-play.png" alt="gp" width="129" height="45" /></a></p></div><a href="/pure-mosaic/" class="read-more">more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/gradle-change-android-resvalue-buildconfig-and-manifest/" class="post-title-link">编译时动态配置 Android resValue / BuildConfig / Manifest</a></h2><div class="post-info">Sep 21, 2015</div><div class="post-content"><p><em>本文参考并得益于我的朋友 <span class="site-title"><a href="http://linroid.com/" target="_blank">@linroid</a> 的文章：《<a href="http://linroid.com/2015/07/24/dynamic-endpoint-when-debug-by-xip-io-and-gradle/" target="_blank">xip.io + gradle 在调试时动态设置服务端地址</a>》，他写得很好，于是我将在这里写得更普适、完整一点，感谢与分享！</span></em></p>
-    <p>当我在修改 telegram 源码的时候，我需要提供 2 个版本，一，我自己的版本，二，分享给大家顺便使用的版本。其实二者唯一的差别就是 App 名称不一样，我自己的版本我想叫「Tel4Drakeet」，但分享给别人，叫这个名字可能不太合适。</p>
-    <p>因此，我如果每次手动修改再进行编译，显然很麻烦。于是想到借助 gradle，想到林的那篇文章，原本我只知道 buildConfigField 和类似友盟多渠道打包那样，修改清单文件内容 manifestPlaceholders，但这两种都不是我现在想要的，我要的是能够修改 res value 的方式，比如修改 strings.xml 文件中的 AppName 的值。</p></div><a href="/gradle-change-android-resvalue-buildconfig-and-manifest/" class="read-more">more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/quickly-locate-the-function-code/" class="post-title-link">拿到一份开源项目，快速定位感兴趣的功能代码</a></h2><div class="post-info">Apr 25, 2015</div><div class="post-content"><p>现在越来越多的开源项目了，令人收藏不暇，有时只是觉得对方的某个 feature 特别喜欢，但很多人可能打开了其代码找了半天找不到关键所在。其实，如果运用了 Android Studio 带给我们的一些查找功能，任何一份新的开源代码摆在我们眼前，我们都可以快速定位到感兴趣的功能代码。</p>
-    <p>所以，今天我来分享一下这个经验，以两个例子做说明吧：</p>
-    <p><h3>一、快速定位 BlackLight 的「收藏微博」功能代码</h3><br><img class="alignright wp-image-871 size-full" src="http://drakeet.me/wp-content/uploads/2015/04/Snip20150425_1-e1429952736105.png" alt="Snip20150425_1" width="220" height="223" />说明：BlackLight 是一个 Material Design 的微博客户，更多介绍可以看这个帖子：<a href="http://www.androidcn.org/topic/553a370f8ca8a1e07687ea3f" target="_blank">一个 Material Design 的微博客户</a> 。我是前天拿到它的源代码的，我想把它微博信息页面中的收藏微博功能提取出来，做一个快捷收藏的功能……它的代码量不小，你不知道作者给这个页面取名叫什么 Activity，你也不知道你就算找到这个 Activity，再要定位到这个具体地方要多久（这个例子是针对 option menu，原本如果手动定位，也是比较简单的，但大部分没那么容易）。</p>
-    <p><strong>关键点1</strong>：对于整个项目源代码进行「find in path」查找这个功能的字符串「收藏微博」四个字，如下：</p>
-    <p><a href="http://drakeet.me/wp-content/uploads/2015/04/Snip20150425_2.png"><img class="alignnone size-full wp-image-872" src="http://drakeet.me/wp-content/uploads/2015/04/Snip20150425_2.png" alt="Snip20150425_2" width="509" height="259" /></a></p>
-    <p>出来的结果是，找到了，并且找到的位置是在 strings.xml 文件中：<br></div><a href="/quickly-locate-the-function-code/" class="read-more">more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/my-story/" class="post-title-link">我的故事</a></h2><div class="post-info">Mar 19, 2015</div><div class="post-content"><p>据说我长得像阿童木 … 其实之前就有很多人说我像哈利·波特，但还是头一次听到有人觉得我像阿童木。</p>
-    <p>其实，在中学的时候我就捣鼓了很多东西，可能和从小的性格有关，比较喜欢一个人默默去思考和观察身边的事物。小时候，趴在地上玩蚂蚁洞都能自个儿玩一整天的我，或许早就埋下了成为闷宅程序员的种子了。</p>
-    <p>我的整个中学基本上是沉浸在各类书籍小说文学作品之上，那时候特别迷恋推理小说和日本文学，初中那会儿流行 99 读书人网上书店，我们就常常从饭钱省下来去买书，看多了自己也就喜欢上写作，从此我们家的电脑就常常在键盘滴滴答答敲击声中陪伴了我许多岁月，仍记得，第一次在推理小说杂志上发表了我自己的推理小说，特别高兴…</p>
-    <p>所以说，在大学之前，其实我从来未曾想过有一天我会成为一名程序员，从未想过会和小伙伴们一起成立一家公司。那时候天真的我，每天很烦恼，每天思考了很多很多细腻的事情，一年可以写满 3 本日记本，梦想着，能有一天像村上春树那样，成为一名文学作家。</p></div><a href="/my-story/" class="read-more">more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/recyclerview-inconsistency-detected-invalid-item/" class="post-title-link">RecyclerView：IndexOutOfBoundsException Inconsistency detected. Invalid item position</a></h2><div class="post-info">Mar 13, 2015</div><div class="post-content"><blockquote>
-    <p>后记：这篇文章写于 2015 年，文中提到的解决办法至今不失为一个好办法。但后来由于我对 RecyclerView 更深入的了解，发现这个问题是存在于 RecyclerView 和 Android UI 刷新的机制里的，它几乎很难被从根源上解决，但我也找到了更好的方案，即只要在操作数据的时候采用原子操作即可根本上避免这个问题。关于此，有机会的话，我将写另一篇详细的文章来阐述。</p>
-</blockquote>
-    <p>java.lang.<span class="goog_qs-tidbit goog_qs-tidbit-0">IndexOutOfBoundsException: Inconsistency detected. Invalid item position…</span></p>
-    <p>重现的方法是：使用 RecyclerView 加官方下拉刷新的时候，如果绑定的 List 对象在更新数据之前进行了 clear，而这时用户紧接着迅速上滑 RV，就会造成崩溃，而且异常不会报到你的代码上，属于RV内部错误。初次猜测是，当你 clear 了 list 之后，这时迅速上滑，而新数据还没到来，导致 RV 要更新加载下面的 Item 时候，找不到数据源了，造成 crash.</p>
-    <p>但明显，更新数据之前 clear list 是挺常见的做法。</p>
-    <p><ul><br>    <li>Stack Overflow 上也有这个问题，未能够解决：<br><a href="http://stackoverflow.com/questions/26827222/how-to-change-contents-of-recyclerview-while-scrolling" target="_blank">How to change contents of RecyclerView while scrolling</a></li><br>    <li>Google code 论坛上也有这个 issue，一堆跟帖，都是描述如何重现，未能够解决：<br><a href="https://code.google.com/p/android/issues/detail?id=77846" target="_blank">https://code.google.com/p/android/issues/detail?id=77846</a></li><br></ul><br>好在我想到了解决这个问题的方法：<br></div><a href="/recyclerview-inconsistency-detected-invalid-item/" class="read-more">more</a></article></li></ul></main><footer><div class="paginator"><a href="/" class="prev">PREV</a><a href="/page/3/" class="next">NEXT</a></div><div class="copyright"><p>© 2014 - 2018 <a href="http://drakeet.me">drakeet</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p><p>特别广告：OTCBTC 是目前最流畅、最靠谱、最好用的场外交易平台，支持支付宝、微信、银行卡支付购买 BTC、ETH、EOS、USDT  等数字币。现在注册，即可领取比特币红包！ <b><a href="https://otcbtc.com/referrals/DRAKEETME" target="_blank">https://otcbtc.com/referrals/DRAKEETME</a></b></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<body>
+<div class="wrap">
+    <header><a href="/" class="logo-link"><img src="/avatar.png" alt="logo"></a>
+        <ul class="nav nav-list">
+            <li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">HOME</a></li>
+            <li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li>
+            <li class="nav-list-item"><a href="/resume/" target="_self" class="nav-list-link">RESUME</a></li>
+            <li class="nav-list-item"><a href="https://github.com/drakeet" target="_blank"
+                                         class="nav-list-link">GITHUB</a></li>
+            <li class="nav-list-item"><a href="/links/" target="_self" class="nav-list-link">LINKS</a></li>
+            <li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li>
+
+        </ul>
+    </header>
+    <main class="container">
+        <div>
+
+         <textarea id="text-input" oninput="this.editor.update()"
+                   rows="6" cols="60">Type **Markdown** here.</textarea>
+        <div id="preview"> </div>
+
+        <script>
+            function Editor(input, preview) {
+                this.update = function () {
+                    preview.innerHTML = markdown.toHTML(input.value);
+                };
+                input.editor = this;
+                this.update();
+            }
+            var $ = function (id) { return document.getElementById(id); };
+            new Editor($("text-input"), $("preview"));
+        </script>
+        </div>
+        <ul class="home post-list">
+            <li class="post-list-item">
+                <article class="post-block"><h2 class="post-title"><a href="/thinking-in-android/" class="post-title-link">浅谈 Android 编程思想和架构</a>
+                </h2>
+                    <div class="post-info">Mar 11, 2016</div>
+                    <div class="post-content"><p>我主要是想讲一讲自己对于 接口、模块化、MVP 的一些心得。</p>
+                        <p>有这么一个场景，两个不同的页面，包含了看起来一模一样的界面内容（或者称 frame/UI），这种场景可能很常见，有时看到会说：“哈哈，我可以设计个复用！”
+                            但是遇到一个问题是，<strong>这两个页面需要分别去请求不同的服务端 API，返回下来的数据结构也不一样</strong>（姑且不说去和服务端开发协商），这样就会导致具体的
+                            view holder 或者适配器在绑定数据的时候无法复用，为何说无法复用或难以复用呢？举个例子，比如传进 Apdapter 的 list item 数据内容不一样，你总不能把
+                            item 再拆了，分好几个 list 传进去吧？面向具体编程情况下，适配器得到不同的 items，得对 item 分发数据绑定到 UI，难免要写很多重复的代码。</p></div>
+                    <a href="/thinking-in-android/" class="read-more">more</a></article>
+            </li>
+            <li class="post-list-item">
+                <article class="post-block"><h2 class="post-title"><a href="/retrofit-2-0-okhttp-3-0-config/"
+                                                                      class="post-title-link">Retrofit 2.0 + OkHttp 3.0
+                    配置</a></h2>
+                    <div class="post-info">Mar 2, 2016</div>
+                    <div class="post-content"><p>Retrofit 和 OkHttp 都是伟大的 Square 公司开源的伟大项目。前段时间也是从 Retrofit 1.9 升级到 2.0
+                        beta 4 版本，从 OkHttp 2.+ 版本升级到 3.0.1
+                        版本。这两者在各自的这两个大版本升级中，都改变了不少，使得原本的代码都需要进行一些修改才能使用，我也是稍微摸索了几下，如今大致摸清，把一些基础配置，比如设置 Json 转换器、RxJava
+                        适配器、设置 Debug Log 模式、设置超时、错误重连，以及配置 Access token Interceptor 等等一些内容，分享一下。<br></div>
+                    <a href="/retrofit-2-0-okhttp-3-0-config/" class="read-more">more</a></article>
+            </li>
+            <li class="post-list-item">
+                <article class="post-block"><h2 class="post-title"><a href="/create-telegram-bot-with-python/"
+                                                                      class="post-title-link">使用 Python 创建 Telegram
+                    机器人</a></h2>
+                    <div class="post-info">Feb 21, 2016</div>
+                    <div class="post-content"><p>要说聊天体验，telegram 比微信好很多，微信消息一多就卡，而且没法直接引用消息进行回复导致经常找不到上下文。telegram
+                        则始终异常流畅，记录阅读位置，消息多的时候也不会觉得跟不上聊天节奏或卡 … 当然了，这一段都不是今天要写的这篇文章的重点，这篇文章主要还是要介绍一下如何开发 telegram
+                        机器人，telegram 在去年中旬的时候开放了机器人的 API，可以设置 hook，使得所有消息都能被转发到你的服务上，然后作出自动化回复。</p></div>
+                    <a href="/create-telegram-bot-with-python/" class="read-more">more</a></article>
+            </li>
+            <li class="post-list-item">
+                <article class="post-block"><h2 class="post-title"><a href="/years-do-not-look-back/"
+                                                                      class="post-title-link">岁月不回头</a></h2>
+                    <div class="post-info">Feb 6, 2016</div>
+                    <div class="post-content"><p>
+                        今天参加了高中同学的大四期聚会，很是高兴。大学上了两年就出来工作，对我而言已经没有毕业没有大学了。而如今大家都快毕业了，听说又有聚会，才确定了回家时间，3号定的动车票，4号回来。之前几年，还是经常装各种理由不去的。虽然自己一点都没有变，大家也都没有变，只是很多都暂时生疏了；虽然我还是默默一个人，有一些遗憾，但总的来说还是非常高兴能够看到大家的。</p>
+                    </div>
+                    <a href="/years-do-not-look-back/" class="read-more">more</a></article>
+            </li>
+            <li class="post-list-item">
+                <article class="post-block"><h2 class="post-title"><a href="/leancloud-engine-guide/"
+                                                                      class="post-title-link">使用 Python 开发 LeanCloud
+                    云引擎入门教程</a></h2>
+                    <div class="post-info">Jan 26, 2016</div>
+                    <div class="post-content"><p>作为独立应用开发者，可能很多时候没有能力或者精力再去开发一个为 App 或者网站服务的后端程序，对于这个问题，我的一个解决方案就是使用
+                        LeanCloud 的云引擎功能，通过云引擎，可以在短时间内快速开发出一个稳定、可靠、可升级拓展的服务。正好最近学习了 Python，于是使用 Python 并基于 LeanCloud
+                        的云引擎功能进行了一次实践，而且由于官方文档并没有写得很好，我碰了几次壁，而且内容分散在好几个页面，所以觉得有必要在此再详细记录下并分享给大家。</p></div>
+                    <a href="/leancloud-engine-guide/" class="read-more">more</a></article>
+            </li>
+            <li class="post-list-item">
+                <article class="post-block"><h2 class="post-title"><a href="/pure-mosaic/" class="post-title-link">PureMosaic</a>
+                </h2>
+                    <div class="post-info">Oct 15, 2015</div>
+                    <div class="post-content"><p><img src="/assets/img/pure-mosaic.jpg" alt=""></p>
+                        <p>
+                        <ul><br>
+                            <li>新增 <strong>高亮模式</strong>；</li>
+                            <br>
+                            <li>新增 <strong>支持双指缩放、移动图片</strong>；</li>
+                            <br>
+                            <li>大幅 优化对于大图片的处理速度；</li>
+                            <br>
+                            <li>加入 上滑工具栏获得更多调整的指引；</li>
+                            <br></ul>
+                        <br>安装包只有 1.45MB， 下载： <a href="http://fir.im/puremosaic" target="_blank">http://fir.im/puremosaic</a></p>
+                        <p>Google Play： <a href="https://play.google.com/store/apps/details?id=me.drakeet.puremosaic"
+                                           target="_blank"><img class="alignnone size-full wp-image-1175"
+                                                                src="/assets/img/google-play.png" alt="gp" width="129"
+                                                                height="45"/></a></p></div>
+                    <a href="/pure-mosaic/" class="read-more">more</a></article>
+            </li>
+            <li class="post-list-item">
+                <article class="post-block"><h2 class="post-title"><a
+                        href="/gradle-change-android-resvalue-buildconfig-and-manifest/" class="post-title-link">编译时动态配置
+                    Android resValue / BuildConfig / Manifest</a></h2>
+                    <div class="post-info">Sep 21, 2015</div>
+                    <div class="post-content"><p><em>本文参考并得益于我的朋友 <span class="site-title"><a href="http://linroid.com/"
+                                                                                              target="_blank">@linroid</a> 的文章：《<a
+                            href="http://linroid.com/2015/07/24/dynamic-endpoint-when-debug-by-xip-io-and-gradle/"
+                            target="_blank">xip.io + gradle 在调试时动态设置服务端地址</a>》，他写得很好，于是我将在这里写得更普适、完整一点，感谢与分享！</span></em>
+                    </p>
+                        <p>当我在修改 telegram 源码的时候，我需要提供 2 个版本，一，我自己的版本，二，分享给大家顺便使用的版本。其实二者唯一的差别就是 App
+                            名称不一样，我自己的版本我想叫「Tel4Drakeet」，但分享给别人，叫这个名字可能不太合适。</p>
+                        <p>因此，我如果每次手动修改再进行编译，显然很麻烦。于是想到借助 gradle，想到林的那篇文章，原本我只知道 buildConfigField 和类似友盟多渠道打包那样，修改清单文件内容
+                            manifestPlaceholders，但这两种都不是我现在想要的，我要的是能够修改 res value 的方式，比如修改 strings.xml 文件中的 AppName
+                            的值。</p></div>
+                    <a href="/gradle-change-android-resvalue-buildconfig-and-manifest/" class="read-more">more</a>
+                </article>
+            </li>
+            <li class="post-list-item">
+                <article class="post-block"><h2 class="post-title"><a href="/quickly-locate-the-function-code/"
+                                                                      class="post-title-link">拿到一份开源项目，快速定位感兴趣的功能代码</a>
+                </h2>
+                    <div class="post-info">Apr 25, 2015</div>
+                    <div class="post-content"><p>现在越来越多的开源项目了，令人收藏不暇，有时只是觉得对方的某个 feature
+                        特别喜欢，但很多人可能打开了其代码找了半天找不到关键所在。其实，如果运用了 Android Studio
+                        带给我们的一些查找功能，任何一份新的开源代码摆在我们眼前，我们都可以快速定位到感兴趣的功能代码。</p>
+                        <p>所以，今天我来分享一下这个经验，以两个例子做说明吧：</p>
+                        <p>
+                        <h3>一、快速定位 BlackLight 的「收藏微博」功能代码</h3><br><img class="alignright wp-image-871 size-full"
+                                                                       src="http://drakeet.me/wp-content/uploads/2015/04/Snip20150425_1-e1429952736105.png"
+                                                                       alt="Snip20150425_1" width="220" height="223"/>说明：BlackLight
+                        是一个 Material Design 的微博客户，更多介绍可以看这个帖子：<a
+                                href="http://www.androidcn.org/topic/553a370f8ca8a1e07687ea3f" target="_blank">一个
+                            Material Design 的微博客户</a>
+                        。我是前天拿到它的源代码的，我想把它微博信息页面中的收藏微博功能提取出来，做一个快捷收藏的功能……它的代码量不小，你不知道作者给这个页面取名叫什么 Activity，你也不知道你就算找到这个
+                        Activity，再要定位到这个具体地方要多久（这个例子是针对 option menu，原本如果手动定位，也是比较简单的，但大部分没那么容易）。</p>
+                        <p><strong>关键点1</strong>：对于整个项目源代码进行「find in path」查找这个功能的字符串「收藏微博」四个字，如下：</p>
+                        <p><a href="http://drakeet.me/wp-content/uploads/2015/04/Snip20150425_2.png"><img
+                                class="alignnone size-full wp-image-872"
+                                src="http://drakeet.me/wp-content/uploads/2015/04/Snip20150425_2.png"
+                                alt="Snip20150425_2" width="509" height="259"/></a></p>
+                        <p>出来的结果是，找到了，并且找到的位置是在 strings.xml 文件中：<br></div>
+                    <a href="/quickly-locate-the-function-code/" class="read-more">more</a></article>
+            </li>
+            <li class="post-list-item">
+                <article class="post-block"><h2 class="post-title"><a href="/my-story/" class="post-title-link">我的故事</a>
+                </h2>
+                    <div class="post-info">Mar 19, 2015</div>
+                    <div class="post-content"><p>据说我长得像阿童木 … 其实之前就有很多人说我像哈利·波特，但还是头一次听到有人觉得我像阿童木。</p>
+                        <p>
+                            其实，在中学的时候我就捣鼓了很多东西，可能和从小的性格有关，比较喜欢一个人默默去思考和观察身边的事物。小时候，趴在地上玩蚂蚁洞都能自个儿玩一整天的我，或许早就埋下了成为闷宅程序员的种子了。</p>
+                        <p>我的整个中学基本上是沉浸在各类书籍小说文学作品之上，那时候特别迷恋推理小说和日本文学，初中那会儿流行 99
+                            读书人网上书店，我们就常常从饭钱省下来去买书，看多了自己也就喜欢上写作，从此我们家的电脑就常常在键盘滴滴答答敲击声中陪伴了我许多岁月，仍记得，第一次在推理小说杂志上发表了我自己的推理小说，特别高兴…</p>
+                        <p>所以说，在大学之前，其实我从来未曾想过有一天我会成为一名程序员，从未想过会和小伙伴们一起成立一家公司。那时候天真的我，每天很烦恼，每天思考了很多很多细腻的事情，一年可以写满 3
+                            本日记本，梦想着，能有一天像村上春树那样，成为一名文学作家。</p></div>
+                    <a href="/my-story/" class="read-more">more</a></article>
+            </li>
+            <li class="post-list-item">
+                <article class="post-block"><h2 class="post-title"><a
+                        href="/recyclerview-inconsistency-detected-invalid-item/" class="post-title-link">RecyclerView：IndexOutOfBoundsException
+                    Inconsistency detected. Invalid item position</a></h2>
+                    <div class="post-info">Mar 13, 2015</div>
+                    <div class="post-content">
+                        <blockquote>
+                            <p>后记：这篇文章写于 2015 年，文中提到的解决办法至今不失为一个好办法。但后来由于我对 RecyclerView 更深入的了解，发现这个问题是存在于 RecyclerView
+                                和 Android UI
+                                刷新的机制里的，它几乎很难被从根源上解决，但我也找到了更好的方案，即只要在操作数据的时候采用原子操作即可根本上避免这个问题。关于此，有机会的话，我将写另一篇详细的文章来阐述。</p>
+                        </blockquote>
+                        <p>java.lang.<span class="goog_qs-tidbit goog_qs-tidbit-0">IndexOutOfBoundsException: Inconsistency detected. Invalid item position…</span>
+                        </p>
+                        <p>重现的方法是：使用 RecyclerView 加官方下拉刷新的时候，如果绑定的 List 对象在更新数据之前进行了 clear，而这时用户紧接着迅速上滑
+                            RV，就会造成崩溃，而且异常不会报到你的代码上，属于RV内部错误。初次猜测是，当你 clear 了 list 之后，这时迅速上滑，而新数据还没到来，导致 RV 要更新加载下面的
+                            Item 时候，找不到数据源了，造成 crash.</p>
+                        <p>但明显，更新数据之前 clear list 是挺常见的做法。</p>
+                        <p>
+                        <ul><br>
+                            <li>Stack Overflow 上也有这个问题，未能够解决：<br><a
+                                    href="http://stackoverflow.com/questions/26827222/how-to-change-contents-of-recyclerview-while-scrolling"
+                                    target="_blank">How to change contents of RecyclerView while scrolling</a></li>
+                            <br>
+                            <li>Google code 论坛上也有这个 issue，一堆跟帖，都是描述如何重现，未能够解决：<br><a
+                                    href="https://code.google.com/p/android/issues/detail?id=77846" target="_blank">https://code.google.com/p/android/issues/detail?id=77846</a>
+                            </li>
+                            <br></ul>
+                        <br>好在我想到了解决这个问题的方法：<br></div>
+                    <a href="/recyclerview-inconsistency-detected-invalid-item/" class="read-more">more</a></article>
+            </li>
+        </ul>
+    </main>
+    <footer>
+        <div class="paginator"><a href="/" class="prev">PREV</a><a href="/page/3/" class="next">NEXT</a></div>
+        <div class="copyright"><p>© 2014 - 2018 <a href="http://drakeet.me">drakeet</a>, powered by <a
+                href="https://hexo.io/" target="_blank">Hexo</a> and <a
+                href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p>
+            <p>特别广告：OTCBTC 是目前最流畅、最靠谱、最好用的场外交易平台，支持支付宝、微信、银行卡支付购买 BTC、ETH、EOS、USDT 等数字币。现在注册，即可领取比特币红包！ <b><a
+                    href="https://otcbtc.com/referrals/DRAKEETME"
+                    target="_blank">https://otcbtc.com/referrals/DRAKEETME</a></b></p></div>
+    </footer>
+</div>
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"
+        integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW"
+        crossorigin="anonymous"></script>
+<script>(function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
 ga('create', 'UA-84860276-1', 'auto');
-ga('send', 'pageview');</script></body>
+ga('send', 'pageview');</script>
+</body>
 </html>

@@ -5,7 +5,7 @@
 
 	<groupId>com.chong</groupId>
 	<artifactId>girl</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1</version>
 	<packaging>jar</packaging>
 
 	<name>girl</name>
@@ -66,6 +66,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.pegdown </groupId>
+			<artifactId>pegdown</artifactId>
+            <version>1.6.0</version>
 		</dependency>
 	</dependencies>
 
