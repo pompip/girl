@@ -38,8 +38,5 @@ public class LoginController  {
             return "false";
         }
     }
-    @GetMapping("/chat")
-    public String startChat(){
-        return "chat";
-    }
+
 }

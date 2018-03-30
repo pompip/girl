@@ -3,18 +3,18 @@
 <head>
     <link rel="stylesheet" href="/css/apollo.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Getting Started: Serving Web Content</title>
+    <title>后台管理</title>
 </head>
 <body>
 <div class="wrap">
-    <header>this is title</header>
+    <header th:replace="header::header">this is title</header>
     <main class="container">
         <p>多文件上传</p>
         <form method="POST" enctype="multipart/form-data" action="/upload">
             多文件：<input type="file" name="files" multiple/><input type="submit" value="上传"/>
         </form>
     </main>
-    <footer>this is footer</footer>
+    <footer th:replace="footer::footer">this is footer</footer>
 </div>
 </body>
 

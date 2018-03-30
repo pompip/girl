@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="X-UA-Compatible" content="IE=edge">
+    <title> 档案</title>
+    <meta name="description" content="android">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/apollo.css">
+    <title>Archives</title>
+    <script src="/js/jquery-1.11.2.min.js"></script>
+    <script>
+        function deleteArticle(id) {
+            $.post("/deletearticle",{"id":id},function (data, status) {
+                    alert(data+"   "+status)
+                if (data){
+                    window.location.reload();
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <header th:replace="header::header"></header>
+    <main class="container">
+        <div class="archive" th:each="art:${articleList}">
+            <h2 class="archive-year">2018</h2>
+
+                <div class="post-item">
+                    <div class="post-info" th:text="${art.getArticleTime()}">Mar 19, 2018</div>
+                    <a href="" class="post-title-link" th:text="${art.getArticleTitle()}" th:href="@{/article/{id}(id=${art.getId()})}">Pure Writer
+                        3.0 - Never Lost Content Editor</a>
+                    <div  class="read-more" th:onclick="'javascript:deleteArticle('+${art.getId()}+')'"  style="float: right"> 删除 </div>
+                    <a href="" class="read-more" th:href="@{/markdown/{id}(id=${art.getId()})}" style="float: right;margin-right: 2rem"> 编辑 </a>
+                </div>
+        </div>
+    </main>
+    <footer th:replace="footer::footer"></footer>
+</div>
+
+</body>
+</html>

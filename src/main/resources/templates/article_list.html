@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>testcss</title>
-    <!--<link rel="stylesheet" href="/css/apollo.css"/>-->
-    <link rel="stylesheet" href="http://drakeet.me/css/apollo.css"/>
-    <title>Title</title>
+    <title>首页</title>
+    <link rel="stylesheet" href="/css/apollo.css"/>
 </head>
 <body>
+
 <div class="wrap">
     <header th:replace="header::header">
 
     </header>
     <main class="container">
+
         <ul class="home post-list" th:each="article:${articleList}">
             <li class="post-list-item">
                 <article class="post-block">
