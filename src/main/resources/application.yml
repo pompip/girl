@@ -8,7 +8,7 @@ server:
       enabled: false
 spring:
   profiles:
-    active: dev
+    active: prod
   thymeleaf:
     encoding: utf-8
     mode: html5
@@ -16,9 +16,9 @@ spring:
     cache: false
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: xxx
-    username: xxx
-    password: xxx
+    url: jdbc:mysql://127.0.0.1:3306/girl
+    username: root
+    password: 314159
   jpa:
     hibernate:
       ddl-auto: update

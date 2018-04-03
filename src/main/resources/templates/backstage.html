@@ -9,9 +9,10 @@
 <div class="wrap">
     <header th:replace="header::header">this is title</header>
     <main class="container">
-        <p>多文件上传</p>
+        <p><a href="/archives">文档仓库</a></p>
+        <p><a href="/markdown">新建文档</a> </p>
         <form method="POST" enctype="multipart/form-data" action="/upload">
-            多文件：<input type="file" name="files" multiple/><input type="submit" value="上传"/>
+            多文件上传：<input type="file" name="files" multiple/><input type="submit" value="上传"/>
         </form>
     </main>
     <footer th:replace="footer::footer">this is footer</footer>

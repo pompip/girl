@@ -1,6 +1,9 @@
 package com.chong.girl.bean;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class MyArticle {
@@ -8,10 +11,11 @@ public class MyArticle {
     @GeneratedValue
     public Long id;
     private String articleTitle;
+    @Column(columnDefinition = "DATETIME")
     private String articleTime;
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String articleBrief;
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String articleContent;
 
     public Long getId() {
