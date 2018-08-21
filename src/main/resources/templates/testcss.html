@@ -6,6 +6,8 @@
     <title>Markdown 编辑器</title>
     <link rel="stylesheet" href="/css/apollo.css"/>
     <script src="/js/marked.min.js"></script>
+    <link href="http://vjs.zencdn.net/5.20.1/video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/5.20.1/videojs-ie8.min.js"></script>
     <style>
         textarea {
             width: 20rem;
@@ -31,9 +33,17 @@
                     Type **Markdown** here.</textarea>
             <div class="post-content" id="preview"></div>
         </div>
-        <video src="https://gslb.miaopai.com/stream/xJCLSGuMH55o6rSvR-dxIOcpnxOsgPNsCEnv0A__.mp4?ssig=cf8b0759d24b2aa450a6eaeea8802540&time_stamp=1522249487945&cookie_id=f8b4a1c4f9b514840013ce23715aa3de&vend=1&os=1&partner=1&platform=2&cookie_id=f8b4a1c4f9b514840013ce23715aa3de&refer=miaopai&scid=xJCLSGuMH55o6rSvR-dxIOcpnxOsgPNsCEnv0A">
+        <video src="rtmp://121.40.153.99:51935/d4/livestream">
 
         </video>
+        <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" width="1280" height="720" poster="http://vjs.zencdn.net/v/oceans.png" data-setup="{}">
+            <!-- <source src="1.mp4" type="video/mp4"> -->
+            <source src="http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8" type="rtmp/flv">
+
+            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+        </video>
+
+        <script src="http://vjs.zencdn.net/5.20.1/video.js"></script>
     </main>
     <footer th:replace="footer::footer" ></footer>
 </div>

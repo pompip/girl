@@ -30,6 +30,10 @@ public class HelloController {
     public String testCss() {
         return "testcss";
     }
+    @GetMapping("/vueTest")
+    public String testVue() {
+        return "vueTest";
+    }
 
 
     @GetMapping("/archives")

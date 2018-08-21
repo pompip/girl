@@ -8,88 +8,93 @@
     <script src="/js/jquery-1.11.2.min.js"></script>
     <script>
         /**
-         *
-         *  public int  cmd = 1;
          public String fromUserID;
          public String toUserID;
          public Long time;
          public String msgData;
          */
 
-        var chatMessage = [];
-        var groupMessage = [];
-        var online = [];
-        var meID;
+        let chatMessage = [];
+        let online = [];
+        let meID;
 
         function receiveMsg(msg) {
-            var json = JSON.parse(msg);
-
+            let json = JSON.parse(msg);
             if (json.cmd === 1) {
-                chatMessage.push(json);
+                chatMessage.push(JSON.parse(json.body));
                 refreshChatArea()
             } else if (json.cmd === 2) {
-                online = json.onlineUser;
-                meID = json.meID;
-                refreshOnline(online)
-            } else if (json.cmd === 4) {
-                groupMessage.add(msg)
+                meID = JSON.parse(json.body).userID;
+                $("#header").html("me ：" + meID);
+                refreshOnline();
+            } else if (json.cmd === 3) {
+                online = JSON.parse(json.body);
+                refreshOnline();
             }
         }
 
-
         function refreshChatArea() {
-            var inChat = "";
-            for (var i of chatMessage) {
-                if (toUserID===i.fromUserID||toUserID===i.toUserID){
-                    inChat += ("<p>" + i.fromUserID + " : " + i.msgData + "</p>")
+            let inChat = "";
+            for (let i of chatMessage) {
+                if (toUserID === i.fromUserID || toUserID === i.toUserID) {
+                    inChat += ("<p>" + i.fromUserID + " : " + i.msgData + "</p>");
                 }
             }
             $("#msgArea").html("");
             $("#msgArea").append(inChat);
             $('#msgArea').scrollTop($('#msgArea')[0].scrollHeight);
         }
-        function refreshOnline(online) {
-            $("header").html("我：" + meID)
-            $("#userArea").html("<p class='onLineUser' style='background: lightgray'>all</p>")
-            for (var i of online) {
-                if (meID === i) {
-                    continue
+
+        function refreshOnline() {
+            let users = [];
+            online.forEach(function (it) {
+                if (meID !== it) {
+                    users.push(it);
                 }
-                var user = "<p class='onLineUser' >" + i + "</p>"
-                $("#userArea").append(user)
+            });
+            $("#userArea").html("<p class='onLineUser' style='background: lightgrey'>all</p>");
+            for (let i of users) {
+                let user = "<p class='onLineUser' >" + i + "</p>";
+                $("#userArea").append(user);
             }
-
             $("p.onLineUser").click(function () {
-                toUserID = $(this).html()
-                $("p.onLineUser").css("background", "gray")
-                $(this).css("background", "lightgray")
-                refreshChatArea()
+                toUserID = $(this).html();
+                $("p.onLineUser").css("background", "gray");
+                $(this).css("background", "lightgray");
+                refreshChatArea();
             })
-
         }
 
-        var ws = new WebSocket("ws://" + window.location.host + "/websocket");
+        let ws = new WebSocket("ws://" + window.location.host + "/webSocket/chat");
         ws.onmessage = function (ev) {
-            var data = ev.data;
+            let data = ev.data;
             receiveMsg(data)
         };
         ws.onopen = function (ev) {
-
+            let msgCMD = {
+                "cmd": 2,
+                "body": "web"
+            };
+            ws.send(JSON.stringify(msgCMD))
         };
         ws.onerror = function (ev) {
             alert(ev.data)
-        }
+        };
         ws.onclose = function (ev) {
-            alert("请刷新");
-        }
-        var toUserID = "all";
+            alert("please type F5 to Refresh!");
+        };
+        let toUserID = "all";
 
         function send() {
-            var msg = $("#sendData").html();
-            var data = {"cmd": 1, "toUserID": toUserID, "fromUserID": meID, "msgData": msg}
-            var jsonString = JSON.stringify(data);
-            chatMessage.push(data)
-            ws.send(jsonString)
+            let msg = $("#sendData").html();
+            let data = {"toUserID": toUserID, "fromUserID": meID, "msgData": msg};
+            let jsonString = JSON.stringify(data);
+            chatMessage.push(data);
+            let msgCMD = {
+                "cmd": 1,
+                "body": jsonString
+            };
+            ws.send(JSON.stringify(msgCMD));
             refreshChatArea()
         }
     </script>
@@ -130,22 +135,23 @@
     </style>
 </head>
 <body>
+
 <main>
-<div id="userArea" style="width: 8rem;height: 35rem ;float: left;background: #4fc08d;"></div>
-<div style="width: 12rem ;height: 35rem;float: left;">
+    <div id="header">me:</div>
+    <div id="userArea" style="width: 8rem;height: 35rem ;float: left;background: #4fc08d;"></div>
+    <div style="width: 12rem ;height: 35rem;float: left;">
+        <div id="msgArea" title="聊天" style="width: 12rem ;height: 30rem ;float: left">
+            <p class="fromMe">connection success</p>
+        </div>
 
-    <div id="msgArea" title="聊天" style="width: 12rem ;height: 30rem ;float: left">
-        <p class="fromMe">可以聊天咯</p>
+        <div title="send" style=" background: gold;width: 12rem ;height: 5rem ;float: left">
+            <div id="sendData" contenteditable="true" style="float: left;width: 8rem;height: 5rem;overflow: auto"></div>
+            <button id="sendButton" onclick="send()"
+                    style="float: right ;text-align: center;width: 4rem;height: 5rem">SEND
+            </button>
+        </div>
     </div>
-
-    <div title="send" style=" background: gold;width: 12rem ;height: 5rem ;float: left">
-        <div id="sendData" contenteditable="true" style="float: left;width: 8rem;height: 5rem;overflow: auto"></div>
-        <button id="sendButton" onclick="send()"
-                style="float: right ;text-align: center;width: 4rem;height: 5rem">发送
-        </button>
-    </div>
-</div>
-<p style="text-align: center">Author:liu_Kechong .Just for fun</p>
+    <p style="text-align: center">Author:liu_Kechong .Just for fun</p>
 </main>
 </body>
 </html>

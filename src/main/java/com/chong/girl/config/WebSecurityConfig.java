@@ -1,9 +1,8 @@
 package com.chong.girl.config;
 
-import com.chong.girl.server.SpringWebSocketHandler;
+import com.chong.girl.server.ChatWebSocketHandler;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
@@ -24,7 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Configuration
 @EnableWebSocket
@@ -34,7 +31,7 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter implements WebSoc
     @Autowired
     SecurityInterceptor securityInterceptor;
     @Autowired
-    private SpringWebSocketHandler springWebSocketHandler;
+    private ChatWebSocketHandler chatWebSocketHandler;
     @Autowired
     private WebSocketHandshakeInterceptor webSocketHandshakeInterceptor;
 
@@ -56,7 +53,7 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter implements WebSoc
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
         webSocketHandlerRegistry
-                .addHandler(springWebSocketHandler, "/websocket")
+                .addHandler(chatWebSocketHandler, "/webSocket/chat")
                 .addInterceptors(webSocketHandshakeInterceptor);
 
     }

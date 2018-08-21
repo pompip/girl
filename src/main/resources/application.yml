@@ -7,11 +7,13 @@ server:
     whitelabel:
       enabled: false
 spring:
+  jmx:
+    default-domain: girl
   profiles:
-    active: prod
+    active: dev
   thymeleaf:
     encoding: utf-8
-    mode: html5
+    mode: HTML
     content-type: text/html
     cache: false
   datasource:

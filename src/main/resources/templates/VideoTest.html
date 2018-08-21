@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+
+<h1>Ajax Put 上传</h1>
+<div>最低兼容到 ie10，支持 onprogress</div>
+<p id="uploadURL" ></p>
+<input id="fileSelector" type="file">
+<input id="submitBtn" type="submit">
+
+<div id="msg"></div>
+<div> {{message}}</div>
+<p id="progress" ></p>
+
+<script>
+    (function () {
+        // 请求用到的参数
+        var Bucket = 'girl-1256321894';
+        var Region = 'ap-guangzhou';
+        var protocol = location.protocol === 'https:' ? 'https:' : 'http:';
+        var prefix = protocol + '//' + Bucket + '.cos.' + Region + '.myqcloud.com/';
+
+        // 计算签名
+        var getAuthorization = function (options, callback) {
+            var method = (options.Method || 'get').toLowerCase();
+            var key = options.Key || '';
+            var pathname = key.indexOf('/') === 0 ? key : '/' + key;
+
+            var url = '/getsign';
+            var xhr = new XMLHttpRequest();
+            var data = {
+                method: method,
+                pathname: pathname,
+            };
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('content-type', 'application/json');
+            xhr.onload = function (e) {
+                if (e.target.responseText === 'action deny') {
+                    alert('action deny');
+                } else {
+                    callback(e.target.responseText);
+                }
+            };
+            xhr.send(JSON.stringify(data));
+        };
+
+        // 上传文件
+        var uploadFile = function (file, callback) {
+            var Key =  file.name; // 这里指定上传目录和文件名
+            getAuthorization({Method: 'PUT', Key: Key}, function (auth) {
+
+                var url = prefix + Key;
+                var xhr = new XMLHttpRequest();
+                xhr.open('PUT', url, true);
+                xhr.setRequestHeader('Authorization', auth);
+                xhr.onload = function (ev) {
+                    if (xhr.status === 200 || xhr.status === 206) {
+                        var ETag = xhr.getResponseHeader('etag');
+                        callback(null, {url: url, ETag: ETag,loaded:ev.loaded});
+                    } else {
+                        callback('文件 ' + Key + ' 上传失败，状态码：' + xhr.status +"     ");
+                    }
+                };
+                xhr.onprogress = function (ev) {
+                    document.getElementById("progress").innerText = ev.loaded
+                };
+                xhr.onerror = function () {
+                    callback('文件 ' + Key + ' 上传失败，请检查是否没配置 CORS 跨域规则');
+                };
+                xhr.send(file);
+            });
+        };
+
+        // 监听表单提交
+        document.getElementById('submitBtn').onclick = function (e) {
+            var file = document.getElementById('fileSelector').files[0];
+            if (!file) {
+                document.getElementById('msg').innerText = '未选择上传文件';
+                return;
+            }
+            file && uploadFile(file, function (err, data) {
+                console.log(err || data);
+                document.getElementById('msg').innerText = err ? err : ('上传成功，ETag=' + data.ETag  +"\n response:  "+ data.loaded);
+            });
+        };
+    })();
+</script>
+</body>
+</html>

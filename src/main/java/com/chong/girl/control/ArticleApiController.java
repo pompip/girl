@@ -30,7 +30,7 @@ public class ArticleApiController {
     public Map<String, Object> saveMarkdownArticle(@RequestBody MyArticle myArticle) {
         Long newID = myArticle.getId();
         if (newID <= 0) {
-            newID = service.addMyArticle(myArticle.getArticleContent(),myArticle.getArticleTitle()).getId();
+            service.addMyArticle(myArticle.getArticleContent(),myArticle.getArticleTitle());
         } else {
             service.updateMyArticle(newID, myArticle.getArticleContent(),myArticle.getArticleTitle());
         }
